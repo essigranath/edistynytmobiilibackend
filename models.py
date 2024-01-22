@@ -1,16 +1,20 @@
+import os
 from typing import List, Annotated
 
+from dotenv import load_dotenv
 from fastapi import Depends
 from sqlalchemy import Column, DateTime, ForeignKeyConstraint, Index, Integer, String, Text, create_engine, Table, \
     ForeignKey
 from sqlalchemy.orm import Mapped, declarative_base, mapped_column, relationship, sessionmaker, Session
 from sqlalchemy.orm.base import Mapped
 
-engine = create_engine(
-    f'postgresql+psycopg2://postgres:salasana@localhost/edistynyt_tiedonhallinta_varastonhallinta_oltp')
+load_dotenv()
+
+engine = create_engine(os.getenv('DB'))
 ses = sessionmaker(bind=engine)
 
 Base = declarative_base()
+metadata = Base.metadata
 
 from typing import List
 

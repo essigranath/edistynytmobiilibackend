@@ -4,7 +4,7 @@ from fastapi import FastAPI
 
 import models
 from controllers import auth, category, rental_item, feature
-import models_old
+
 
 app = FastAPI()
 
@@ -14,4 +14,4 @@ app.include_router(rental_item.router)
 app.include_router(feature.router)
 
 if os.getenv('DEV') == '1':
-    models_old.metadata.create_all(bind=models.engine)
+    models.metadata.create_all(bind=models.engine)
